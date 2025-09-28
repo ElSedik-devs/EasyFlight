@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+
+<!-- Sticky compact summary -->
+<section class="rr-summary rr-summary--sticky">
+  <div class="rr-summary__card">
+    <span class="rr-chip rr-chip--brand">EasyFlight</span>
+    <span class="rr-summary__title">Pick Return Flight</span>
+    <span class="rr-summary__meta">
+      Results: {{ (searchedFlights()?.length) || 0 }}
+      <ng-container *ngIf="passengers"> • Travellers: {{ passengers }}</ng-container>
+    </span>
+  </div>
+</section>
+
+<!-- Results -->
+<section class="rr-results">
+  <div class="rr-container">
+    <div class="rr-list">
+      @for (flight of searchedFlights(); track flight.id) {
+        <app-search-box
+          [flight]="flight"
+          [fromFlightId]="fromFlightId()"
+          [passengers]="passengers">
+        </app-search-box>
+      }
+    </div>
+  </div>
+</section>

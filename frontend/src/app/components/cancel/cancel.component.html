@@ -1,0 +1,34 @@
+<app-navbar></app-navbar>
+
+<section class="pc-page">
+  <div class="pc-container">
+    <div class="pc-card">
+      <!-- Icon -->
+      <div class="pc-icon" aria-hidden="true">
+        <!-- simple warning/close mark SVG -->
+        <svg viewBox="0 0 24 24" width="52" height="52" focusable="false">
+          <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M8 8l8 8M16 8l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <h1 class="pc-title">Payment canceled</h1>
+      <p class="pc-sub">
+        Your payment wasn’t completed. No charges were made.
+      </p>
+      <p class="pc-help">
+        You can try again or go back to the homepage to continue browsing flights.
+      </p>
+
+      <div class="pc-actions">
+        <!-- If you have a dedicated checkout route, update routerLink accordingly -->
+        <a class="pc-btn pc-btn--primary" href="javascript:history.back()">Try Again</a>
+        <a class="pc-btn pc-btn--ghost" routerLink="/" >Go to Home</a>
+      </div>
+
+      <div class="pc-note">
+        If this keeps happening, contact support and reference your booking attempt.
+      </div>
+    </div>
+  </div>
+</section>

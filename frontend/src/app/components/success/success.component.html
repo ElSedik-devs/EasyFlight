@@ -1,0 +1,80 @@
+<app-navbar></app-navbar>
+
+<section class="ps-page">
+  <div class="ps-container">
+
+    @if (loading) {
+      <div class="ps-card ps-card--center">
+        <div class="ps-loader" aria-hidden="true"></div>
+        <h2 class="ps-title">Verifying payment…</h2>
+        <p class="ps-sub">Please wait while we confirm your transaction.</p>
+      </div>
+    }
+
+    @if (!loading) {
+
+      @if (result?.paid) {
+        <div class="ps-card ps-card--center ps-card--success">
+          <div class="ps-icon ps-icon--success" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="52" height="52">
+              <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M7 12l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <h2 class="ps-title">Payment confirmed 🎉</h2>
+          <p class="ps-sub">Your booking has been secured.</p>
+
+          <div class="ps-summary">
+            <div class="ps-row">
+              <span>Amount</span>
+              <strong>
+                {{ (result?.amountTotal || 0) / 100 | number:'1.2-2' }}
+                {{ result?.currency?.toUpperCase() }}
+              </strong>
+            </div>
+
+
+          </div>
+
+          <p class="ps-note">A confirmation/receipt will be sent to your email shortly.</p>
+
+          <div class="ps-actions">
+            <a class="ps-btn ps-btn--primary" routerLink="/bookings">View Bookings</a>
+            <a class="ps-btn ps-btn--ghost" routerLink="/">Go to Home</a>
+          </div>
+        </div>
+      }
+
+      @if (!result?.paid && !error) {
+        <div class="ps-card ps-card--center">
+          <div class="ps-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="52" height="52">
+              <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 8l8 8M16 8l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h2 class="ps-title">Payment not completed</h2>
+          <p class="ps-sub">No charges were made. You can try again.</p>
+          <div class="ps-actions">
+            <a class="ps-btn ps-btn--primary" href="javascript:history.back()">Try Again</a>
+            <a class="ps-btn ps-btn--ghost" routerLink="/bookings">My Bookings</a>
+          </div>
+        </div>
+      }
+
+      @if (error) {
+        <div class="ps-card">
+          <h2 class="ps-title">Oops</h2>
+          <p class="ps-sub">Something went wrong while confirming your payment.</p>
+          <pre class="ps-error mono">{{ error }}</pre>
+          <div class="ps-actions">
+            <a class="ps-btn ps-btn--primary" href="javascript:location.reload()">Retry</a>
+            <a class="ps-btn ps-btn--ghost" outerLink="/bookings">My Bookings</a>
+          </div>
+        </div>
+      }
+
+    }
+  </div>
+</section>

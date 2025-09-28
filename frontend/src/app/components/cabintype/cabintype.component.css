@@ -1,0 +1,27 @@
+.cabin-row{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding:12px 14px; margin-bottom:10px;
+  border:1px solid #e5e7eb; border-radius:10px; background:#fff;
+  cursor:pointer; transition:box-shadow .2s, border-color .2s, background .2s;
+}
+.cabin-row:hover{ border-color:#FF5E00; box-shadow:0 8px 18px rgba(0,0,0,.08); }
+.cabin-type{ font-weight:600; color:#0f172a; }
+.cabin-price{ font-weight:700; color:#FF5E00; font-variant-numeric: tabular-nums; }
+
+/* selected state */
+.cabin-row.selected{
+  border-color:#FF5E00;
+  background:#ffe8dc;
+  box-shadow:0 10px 22px rgba(255,94,0,.18);
+}
+
+
+.cabin-row:hover{
+  border-color: #FF5E00;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+
+
+

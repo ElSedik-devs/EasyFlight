@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+<!-- Sticky summary header -->
+<header class="cb-summary cb-summary--sticky">
+  <div class="cb-summary__wrap">
+    <div class="cb-summary__text">
+      <h2>Confirm Your Booking</h2>
+      <p>Please review your chosen flight details below</p>
+    </div>
+    <button (click)="onConfirm()" type="button" class="cb-btn cb-btn--primary">
+      Confirm
+    </button>
+  </div>
+</header>
+
+<!-- Content column -->
+<section class="cb-content">
+  <div class="cb-container">
+    @if(goFlight()){
+      <app-confrimbookingbox
+        [flight]="goFlight()!"
+        [passengers]="passengers"
+        [cabinType]="goCabinType"
+        [cabins]="goCabins()"
+        (outCabinType)="onCabinChange('GO', $event)"
+        (outTotalPrice)="onPriceChange('GO',$event)">
+      </app-confrimbookingbox>
+    }
+
+    @if(returnFlight()){
+      <app-confrimbookingbox
+        [flight]="returnFlight()!"
+        [passengers]="passengers"
+        [cabinType]="returnCabinType"
+        [cabins]="returnCabins()"
+        (outCabinType)="onCabinChange('RETURN',$event)"
+        (outTotalPrice)="onPriceChange('RETURN',$event)">
+      </app-confrimbookingbox>
+    }
+  </div>
+</section>

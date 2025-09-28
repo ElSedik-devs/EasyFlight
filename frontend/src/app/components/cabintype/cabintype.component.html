@@ -1,0 +1,6 @@
+<div class="cabin-row"
+     [class.selected]="isSelected"
+     (click)="changeCabin()">
+  <span class="cabin-type">{{ cabin.cabinType }}</span>
+  <span class="cabin-price">{{ cabin.price | currency:'EUR' }}</span>
+</div>

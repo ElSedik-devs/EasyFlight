@@ -1,0 +1,73 @@
+:root{
+  --brand:#FF5E00;
+  --ink:#0f172a;
+  --muted:#64748b;
+  --card:#ffffff;
+  --ring: rgba(255,94,0,.14);
+}
+
+.card{
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid rgba(2,8,23,.06);
+  box-shadow: 0 10px 24px rgba(2,8,23,.10);
+  overflow: hidden;
+  transition: box-shadow .2s ease, transform .12s ease;
+}
+.card:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(2,8,23,.14);
+}
+
+/* Head: route left, date right */
+.card__head{
+  display:flex; align-items:center; justify-content: space-between;
+  gap: 12px; padding: 12px 16px;
+  background: #111; color: #fff;
+}
+.card__route{ font-weight: 800; letter-spacing: .2px; }
+.card__city{ font-size: 15px; }
+.card__arrow{ margin: 0 8px; opacity: .9; }
+.card__date{ display:flex; gap: 10px; align-items: baseline; font-weight: 700; }
+.card__weekday{ opacity: .95; }
+.card__md{ color: #e2e8f0; font-size: 13px; }
+
+/* Body: timeline | times | price/cta */
+.card__body{
+  display:grid; grid-template-columns: 26px 1fr auto;
+  gap: 14px; padding: 16px;
+  align-items:center;
+}
+.card__timeline{ display:grid; align-content:center; justify-items:center; }
+.card__timeline .dot{
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+.card__timeline .line{ width: 2px; height: 26px; background: #e5e7eb; margin: 6px 0; }
+
+.card__times{ display:grid; gap: 10px; }
+.row{ display:grid; grid-template-columns: 1fr auto; align-items:center;
+      padding: 8px 0; border-bottom: 1px dashed #eaecef; }
+.row:last-child{ border-bottom: 0; }
+.label{ color: var(--muted); font-weight: 700; }
+.value{ color: var(--ink); font-weight: 900; font-variant-numeric: tabular-nums; }
+
+.card__cta{
+  display:grid; gap: 8px; justify-items:end; align-content:center;
+  min-width: 168px; padding-left: 8px;
+}
+.price{ font-size: 21px; font-weight: 900; color: var(--ink); }
+.btn{
+  border-radius: 999px; padding: 9px 16px; font-weight: 800;
+  background: var(--brand); color:#fff; border:none; cursor:pointer;
+  box-shadow: 0 8px 18px rgba(255,94,0,.28);
+  transition: transform .05s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn:hover{ box-shadow: 0 12px 24px rgba(255,94,0,.34); }
+.btn:active{ transform: translateY(1px); }
+
+@media (max-width: 640px){
+  .card__body{ grid-template-columns: 20px 1fr; }
+  .card__cta{ justify-items:start; grid-column: 1 / -1; padding-left: 0; margin-top: 8px; }
+}

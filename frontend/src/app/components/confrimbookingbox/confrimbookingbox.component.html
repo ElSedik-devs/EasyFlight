@@ -1,0 +1,86 @@
+<div class="flight-card">
+  <!-- Header with route + price -->
+  <div class="flight-head">
+    <div class="route">
+      <span class="city">{{ flight.from }}</span>
+      <span class="arrow">→</span>
+      <span class="city">{{ flight.to }}</span>
+    </div>
+    <div class="head-price">
+      <span class="price">{{ price | currency : 'EUR' }}</span>
+    </div>
+  </div>
+
+  <!-- Body rows -->
+  <div class="flight-body">
+    <div class="row">
+      <div class="label">Departure</div>
+      <div class="value">
+        <span class="dt-primary">{{ flight.departureTime | date:'EEE, d MMM · HH:mm' }}</span>
+        <span class="dt-secondary">{{ flight.departureTime | date:'yyyy' }}</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="label">Arrival</div>
+      <div class="value">
+        <span class="dt-primary">{{ flight.arrivalTime | date:'EEE, d MMM · HH:mm' }}</span>
+        <span class="dt-secondary">{{ flight.arrivalTime | date:'yyyy' }}</span>
+      </div>
+    </div>
+
+    <div class="row row--cabin">
+      <div class="label">Cabin</div>
+      <div class="value">
+        <span class="badge">{{ cabinType }}</span>
+        <button
+          type="button"
+          class="pill-btn"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#' + modalId">
+          Upgrade Cabin
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="label">Passengers</div>
+      <div class="value">{{ passengers }}</div>
+    </div>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <div class="row row--total">
+      <div class="label">Total Price</div>
+      <div class="value total">{{ price * passengers | currency : 'EUR' }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" [attr.id]="modalId" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content cb-modal">
+      <div class="modal-header">
+        <h1 class="modal-title fs-6">Choose a Cabin</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        @for(cabin of cabins ; track cabin.id){
+          <app-cabintype
+            [cabin]="cabin"
+            [cabinType]="cabinType"
+            (outCabinType)="onCabinChange($event)">
+          </app-cabintype>
+        }
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="cb-btn cb-btn--primary" data-bs-dismiss="modal">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

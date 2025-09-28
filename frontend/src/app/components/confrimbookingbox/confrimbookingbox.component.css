@@ -1,0 +1,105 @@
+:root{
+  --brand:#FF5E00;
+  --ink:#0f172a;
+  --muted:#64748b;
+  --card:#ffffff;
+  --ring: rgba(255,94,0,.14);
+}
+
+/* Card shell */
+.flight-card{
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid rgba(2,8,23,.08);
+  box-shadow: 0 12px 26px rgba(2,8,23,.10);
+  overflow: hidden;
+  transition: transform .12s ease, box-shadow .2s ease;
+}
+.flight-card:hover{ transform: translateY(-1px); box-shadow: 0 16px 34px rgba(2,8,23,.14); }
+
+/* Header */
+.flight-head{
+  display:flex; align-items:center; justify-content: space-between;
+  gap: 12px; padding: 12px 16px;
+  background: #111; color: #fff;
+}
+.route{ font-weight: 800; letter-spacing: .2px; }
+.city{ font-size: 15px; }
+.arrow{ margin: 0 8px; opacity: .9; }
+.head-price .price{ font-weight: 900; }
+
+/* Body */
+.flight-body{ padding: 14px 16px 16px; display:grid; gap: 10px; }
+
+.row{
+  display:grid; grid-template-columns: 1fr auto; align-items:center;
+  padding: 10px 0; border-bottom: 1px dashed #eaecef;
+}
+.row:last-child{ border-bottom: 0; }
+.label{ color: var(--muted); font-weight: 700; }
+.value{
+  color: var(--ink); font-weight: 800; display:flex; align-items: baseline; gap: 8px;
+}
+
+/* Date styling */
+.dt-primary{ font-weight: 900; }
+.dt-secondary{
+  color: #94a3b8; font-weight: 700; font-size: 12px;
+  padding: 2px 6px; background: rgba(2,8,23,.05); border-radius: 999px;
+}
+
+/* Cabin line */
+.row--cabin .value{ display:flex; align-items:center; gap: 10px; }
+.badge{
+  background: rgba(2,8,23,.06);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+/* Divider before total */
+.divider{
+  height: 6px;
+  background: linear-gradient(90deg, var(--brand), #ff7a33);
+  border-radius: 999px; margin-top: 2px;
+}
+
+/* Total row */
+.row--total .label{ font-weight: 900; }
+.total{ color: var(--ink); font-size: 18px; font-weight: 900; }
+
+/* Brand pill buttons */
+.pill-btn{
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: var(--brand);
+  color:#fff; border:none; font-weight: 800; cursor:pointer;
+  box-shadow: 0 8px 18px rgba(255,94,0,.28);
+  transition: transform .05s ease, box-shadow .2s ease, background .2s ease;
+}
+.pill-btn:hover{ box-shadow: 0 12px 24px rgba(255,94,0,.36); }
+.pill-btn:active{ transform: translateY(1px); }
+
+/* Modal polish + Done button style (matches brand) */
+.cb-modal{
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(2,8,23,.08);
+  box-shadow: 0 18px 40px rgba(2,8,23,.20);
+}
+.cb-btn{
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  transition: transform .05s ease, box-shadow .2s ease, background .2s ease;
+}
+.cb-btn--primary{
+  background: var(--brand); color:#fff;
+  box-shadow: 0 8px 18px rgba(255,94,0,.28);
+}
+.cb-btn--primary:hover{ box-shadow: 0 12px 24px rgba(255,94,0,.36); }
+.cb-btn--primary:active{ transform: translateY(1px); }

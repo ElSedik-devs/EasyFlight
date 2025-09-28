@@ -1,0 +1,99 @@
+<section class="hero">
+  <picture>
+    <img class="hero-img" src="assets/hero.jpg" alt="Sky and horizon" />
+  </picture>
+
+  <div class="hero-center">
+    <div class="glass-card search-card">
+      <div class="search-head">
+        <h2>Find your next flight</h2>
+        <p class="text-muted">Best fares. Simple booking.</p>
+      </div>
+
+      <div class="form-grid">
+        <!-- From -->
+        <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+          <label class="field-label">From</label>
+          <input type="text" placeholder="City" class="input-clean"
+                 [formControl]="fromControl" [matAutocomplete]="fromAuto" />
+          <mat-autocomplete #fromAuto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredFromOptions" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <!-- To -->
+        <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+          <label class="field-label">To</label>
+          <input type="text" placeholder="City" class="input-clean"
+                 [formControl]="toControl" [matAutocomplete]="toAuto" />
+          <mat-autocomplete #toAuto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredToOptions" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <!-- Depart -->
+        <div class="col-xxl-2 col-xl-2 col-lg-4 col-md-6 col-sm-6 col-12">
+          <label class="field-label">Depart</label>
+          <input class="input-clean datepicker-readonly"
+                 [formControl]="dateControl"
+                 matInput
+                 [min]="startOfToday"
+                 [matDatepickerFilter]="myFilter"
+                 [matDatepicker]="pickerDepart"
+                 readonly
+                 (keydown)="$event.preventDefault()"
+                 (paste)="$event.preventDefault()"
+                 (click)="pickerDepart.open()" />
+          <mat-datepicker-toggle [for]="pickerDepart"></mat-datepicker-toggle>
+          <mat-datepicker #pickerDepart [dateClass]="highlightDates"></mat-datepicker>
+        </div>
+
+        <!-- Return -->
+        <div class="col-xxl-2 col-xl-2 col-lg-4 col-md-6 col-sm-6 col-12" *ngIf="toggleControl.value">
+          <label class="field-label">Return</label>
+          <input class="input-clean datepicker-readonly"
+                 [formControl]="dateReturnControl"
+                 matInput
+                 [min]="dateControl.value || startOfToday"
+                 [matDatepickerFilter]="myFilterReturn"
+                 [matDatepicker]="pickerReturn"
+                 readonly
+                 (keydown)="$event.preventDefault()"
+                 (paste)="$event.preventDefault()"
+                 (click)="pickerReturn.open()" />
+          <mat-datepicker-toggle [for]="pickerReturn"></mat-datepicker-toggle>
+          <mat-datepicker #pickerReturn [dateClass]="highlightReturnDates"></mat-datepicker>
+        </div>
+
+        <!-- Passengers -->
+        <div class="col-xxl-2 col-xl-2 col-lg-4 col-md-6 col-sm-6 col-12">
+          <label class="field-label">Who’s travelling?</label>
+          <div class="input-group input-group-sm">
+            <button type="button" class="btn btn-outline-secondary"
+                    (click)="passengers.setValue(Math.max(1, passengers.value! - 1))">–</button>
+            <input [formControl]="passengers" id="adults" type="number"
+                   class="form-control text-center" min="1" max="9" value="1" readonly />
+            <button type="button" class="btn btn-outline-secondary"
+                    (click)="passengers.setValue(Math.min(9, passengers.value! + 1))">+</button>
+          </div>
+        </div>
+
+        <!-- One way / return -->
+        <div class="col-xxl-3 col-xl-3 col-lg-5 col-md-6 col-sm-6 col-12 toggle-wrap">
+          <span class="side-label" [class.active]="!toggleControl.value">One Way</span>
+          <mat-slide-toggle [formControl]="toggleControl"></mat-slide-toggle>
+          <span class="side-label" [class.active]="toggleControl.value">Return Trip</span>
+        </div>
+
+        <!-- CTA -->
+        <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12">
+          <button class="btn-primary-solid w-100" (click)="onSearchSubmit()">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

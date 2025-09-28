@@ -1,0 +1,103 @@
+:root{
+  --brand:#FF5E00;
+  --ink:#0f172a;
+  --muted:#64748b;
+  --card:#ffffff;
+  --ring: rgba(255,94,0,.14);
+}
+
+/* Page background + center column */
+.pc-page{
+  min-height: 100vh;
+  background: linear-gradient(to bottom,#f9fafb 0%, #f3f4f6 100%);
+  padding: 24px 0 72px;
+}
+.pc-container{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: grid;
+  place-items: start center;
+}
+
+/* Card */
+.pc-card{
+  width: min(700px, 100%);
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid rgba(2,8,23,.08);
+  box-shadow: 0 14px 32px rgba(2,8,23,.12);
+  padding: 24px 22px;
+  text-align: center;
+}
+
+/* Icon */
+.pc-icon{
+  color: var(--brand);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px; height: 68px;
+  border-radius: 999px;
+  box-shadow: 0 0 0 6px var(--ring);
+  margin: 4px auto 12px;
+}
+
+/* Text */
+.pc-title{
+  margin: 6px 0 4px;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--ink);
+}
+.pc-sub{
+  margin: 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+.pc-help{
+  margin: 10px 0 16px;
+  color: #475569;
+  font-weight: 600;
+}
+
+/* Actions */
+.pc-actions{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+.pc-btn{
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 900;
+  border: 1.5px solid transparent;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform .05s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+.pc-btn--primary{
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(255,94,0,.28);
+}
+.pc-btn--primary:hover{ box-shadow: 0 16px 28px rgba(255,94,0,.34); }
+.pc-btn--primary:active{ transform: translateY(1px); }
+
+.pc-btn--ghost{
+  background: #fff;
+  color: var(--ink);
+  border-color: rgba(2,8,23,.12);
+}
+.pc-btn--ghost:hover{
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+/* Note */
+.pc-note{
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}

@@ -1,0 +1,85 @@
+<app-navbar></app-navbar>
+
+<section class="pf-page">
+  <div class="pf-container">
+    <header class="pf-header">
+      <h2>Passengers</h2>
+      <p>Please fill each traveller’s details below.</p>
+    </header>
+
+    <form [formGroup]="form" (ngSubmit)="save()" class="pf-form">
+      <div class="pf-list" formArrayName="passengers">
+        @for (passenger of passengersForm.controls; let i = $index; track trackByIndex($index, passenger)) {
+          <div class="pf-card" [formGroupName]="i">
+            <div class="pf-card__head">
+              <span class="pf-chip">Passenger {{ i + 1 }}</span>
+            </div>
+
+            <div class="pf-grid">
+              <!-- First Name -->
+              <div class="pf-field">
+                <label class="pf-label">First Name</label>
+                <input class="pf-input" placeholder="First Name" formControlName="firstName"
+                       [attr.aria-invalid]="passenger.get('firstName')?.invalid || null"/>
+                @if(passenger.get('firstName')?.invalid && (passenger.get('firstName')?.touched || passenger.get('firstName')?.dirty)){
+                  <small class="pf-err">
+                    @if(passenger.get('firstName')?.errors?.['required']){Required}
+                    @if(passenger.get('firstName')?.errors?.['pattern']){Only letters/spaces (min 2)}
+                  </small>
+                }
+              </div>
+
+              <!-- Last Name -->
+              <div class="pf-field">
+                <label class="pf-label">Last Name</label>
+                <input class="pf-input" placeholder="Last Name" formControlName="lastName"
+                       [attr.aria-invalid]="passenger.get('lastName')?.invalid || null"/>
+                @if(passenger.get('lastName')?.invalid && (passenger.get('lastName')?.touched || passenger.get('lastName')?.dirty)){
+                  <small class="pf-err">
+                    @if(passenger.get('lastName')?.errors?.['required']){Required}
+                    @if(passenger.get('lastName')?.errors?.['pattern']){Only letters/spaces (min 2)}
+                  </small>
+                }
+              </div>
+
+              <!-- Passport -->
+              <div class="pf-field">
+                <label class="pf-label">Passport No.</label>
+                <input class="pf-input" placeholder="Passport No." formControlName="passportNumber"
+                       [attr.aria-invalid]="passenger.get('passportNumber')?.invalid || null"/>
+                @if(passenger.get('passportNumber')?.invalid && (passenger.get('passportNumber')?.touched || passenger.get('passportNumber')?.dirty)){
+                  <small class="pf-err">
+                    @if(passenger.get('passportNumber')?.errors?.['required']){Required}
+                    @if(passenger.get('passportNumber')?.errors?.['pattern']){6–9 letters/numbers}
+                  </small>
+                }
+              </div>
+
+              <!-- Age -->
+              <div class="pf-field">
+                <label class="pf-label">Age</label>
+                <input class="pf-input" type="number" placeholder="Age" formControlName="age"
+                       [attr.aria-invalid]="passenger.get('age')?.invalid || null"/>
+                @if(passenger.get('age')?.invalid && (passenger.get('age')?.touched || passenger.get('age')?.dirty)){
+                  <small class="pf-err">
+                    @if(passenger.get('age')?.errors?.['required']){Required}
+                    @if(passenger.get('age')?.errors?.['min'] || passenger.get('age')?.errors?.['max']){Must be 0–120}
+                  </small>
+                }
+              </div>
+            </div>
+          </div>
+        } @empty {
+          <p class="pf-empty">No passengers yet.</p>
+        }
+      </div>
+
+      <div class="pf-actions">
+        <button type="submit" class="pf-btn pf-btn--primary"
+                [disabled]="form.invalid || passengersForm.length === 0">
+          Proceed to Checkout
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

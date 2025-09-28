@@ -1,0 +1,40 @@
+<div class="card">
+  <!-- Top bar with route -->
+  <div class="card__head">
+    <div class="card__route">
+      <span class="card__city">{{ from }}</span>
+      <span class="card__arrow">→</span>
+      <span class="card__city">{{ to }}</span>
+    </div>
+
+    <div class="card__date">
+      <span class="card__weekday">{{ weekday }}</span>
+      <span class="card__md">{{ day }} {{ month }}</span>
+    </div>
+  </div>
+
+  <!-- Body: timeline + times + price/cta -->
+  <div class="card__body">
+    <div class="card__timeline" aria-hidden="true">
+      <span class="dot"></span>
+      <span class="line"></span>
+      <span class="dot"></span>
+    </div>
+
+    <div class="card__times">
+      <div class="row">
+        <div class="label">Departure</div>
+        <div class="value">{{ departureHour }}:{{ departureMinute }}</div>
+      </div>
+      <div class="row">
+        <div class="label">Arrival</div>
+        <div class="value">{{ arrivalHour }}:{{ arrivalMinute }}</div>
+      </div>
+    </div>
+
+    <div class="card__cta">
+      <div class="price">{{ price | currency:'EUR' }}</div>
+      <button class="btn" (click)="selectFlight()">Select Flight</button>
+    </div>
+  </div>
+</div>

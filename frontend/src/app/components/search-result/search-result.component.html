@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+
+<!-- Sticky summary -->
+<section class="sr-summary sr-summary--sticky">
+  <div class="sr-summary__card">
+    <div class="sr-summary__left">
+      <span class="sr-chip sr-chip--brand">EasyFlight</span>
+      <span class="sr-summary__meta">
+        Results: {{ (searchedFlights()?.length) || 0 }}
+        <ng-container *ngIf="passengers"> • Travellers: {{ passengers }}</ng-container>
+        <ng-container *ngIf="isReturnFlight && returnDate">
+          • Return: {{ returnDate | date:'EEE, d MMM' }}
+        </ng-container>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Results list -->
+<section class="sr-results">
+  <div class="sr-container">
+    <div class="sr-list">
+      @for (flight of searchedFlights(); track flight.id) {
+        <app-search-box
+          [flight]="flight"
+          [isReturnFlight]="isReturnFlight"
+          [returnDate]="returnDate"
+          [passengers]="passengers">
+        </app-search-box>
+      }
+    </div>
+  </div>
+</section>
