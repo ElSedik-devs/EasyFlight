@@ -8,9 +8,12 @@ A full-stack **flight booking web app** with a modern **Angular 19** frontend an
 
 ## 🚀 Demo
 
-🎥 **Demo Video**: ## 🚀 
 
-[![Demo Video](https://img.youtube.com/vi/Dp9cvgTLtwg/maxresdefault.jpg)](https://youtu.be/Dp9cvgTLtwg)
+
+## 🎥 Demo Video
+
+[![Watch the demo](https://img.youtube.com/vi/Dp9cvgTLtwg/hqdefault.jpg)](https://youtu.be/Dp9cvgTLtwg)
+
 
 
 ---
